@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/main_menu"
+    android:layout_height="match_parent"
+    tools:context=".Main.Cart_Activity">
+    <Button
+        android:id="@+id/proceedOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/Black"
+        android:gravity="center"
+        android:textColor="@color/White"
+        android:text="proceed to checkout"
+        android:layout_alignParentLeft="true" />
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/next_btn"
+                    android:backgroundTint="@color/White"
+                    android:background="@drawable/ic_left_arrownew"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" />
+
+                <TextView
+
+                    android:padding="15dp"
+                    android:fontFamily="@font/chaparralprobold"
+                    android:textSize="33dp"
+                    android:textColor="@color/cardview_light_background"
+                    android:text="Cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/recyclerview"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="60dp"
+                app:cardCornerRadius="5dp"
+                android:id="@+id/cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:padding="10dp"
+                        android:textSize="22dp"
+                        android:text="Price Details"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:fontFamily="@font/chaparralprobold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+                    <View
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/Button_grey"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"/>
+
+                    <LinearLayout
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:weightSum="1"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:text="Bag's Total "
+                            android:layout_width="0dp"
+                            android:layout_weight=".7"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/totalamount"
+                            android:text=""
+                            android:layout_width="0dp"
+                            android:layout_weight=".3"
+                            android:layout_height="match_parent" />
+
+
+                    </LinearLayout>
+                   <!-- <LinearLayout
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:weightSum="1"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:text="Discount"
+                            android:layout_width="0dp"
+                            android:layout_weight=".7"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:text="Rs.0"
+                            android:layout_width="0dp"
+                            android:layout_weight=".3"
+                            android:layout_height="match_parent" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:weightSum="1"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:text="Sub-Total"
+                            android:layout_width="0dp"
+                            android:layout_weight=".7"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/subtotoal"
+                            android:text=""
+                            android:layout_width="0dp"
+                            android:layout_weight=".3"
+                            android:layout_height="match_parent" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:weightSum="1"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:text="Coupon Discount"
+                            android:layout_width="0dp"
+                            android:layout_weight=".7"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:text="Apply now"
+                            android:layout_width="0dp"
+                            android:layout_weight=".3"
+                            android:layout_height="match_parent" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:weightSum="1"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:text="Delivery"
+                            android:layout_width="0dp"
+                            android:layout_weight=".7"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:text="Free"
+                            android:layout_width="0dp"
+                            android:layout_weight=".3"
+                            android:layout_height="match_parent" />
+
+
+                    </LinearLayout>
+-->
+                    <View
+                        android:layout_margin="2dp"
+                        android:background="@color/Button_grey"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"/>
+                    <LinearLayout
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:weightSum="1"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:fontFamily="@font/chaparralprobold"
+                            android:text="Total Payable"
+                            android:textSize="20dp"
+                            android:textColor="@color/Black"
+                            android:layout_width="0dp"
+                            android:layout_weight=".7"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/finalprie"
+                            android:textSize="20dp"
+                            android:fontFamily="@font/chaparralprobold"
+                            android:text=""
+                            android:textColor="@color/Black"
+                            android:layout_width="0dp"
+                            android:layout_weight=".3"
+                            android:layout_height="match_parent" />
+
+
+                    </LinearLayout>
+
+
+
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</RelativeLayout>

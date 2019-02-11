@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#024116</color>
+    <color name="colorPrimaryDark">#024116</color>
+    <color name="colorAccent">#ef523a</color>
+    <color name="Green">#024116</color>
+    <color name="Yellow">#f8bc4d</color>
+    <color name="Orange">#81AFB8</color>
+    <color name="Black">#000</color>
+    <color name="White">#fff</color>
+    <color name="loandrablecolor">#3E8AA4</color>
+    <color name="lightbluer">#d3f3ff</color>
+    <color name="Facebook">#3C5A98</color>
+    <color name="Gmail">#81AFB8</color>
+    <color name="Camera_grey">#8C8C8C</color>
+    <color name="Button_grey">#f2f2f2</color>
+    <color name="layoutcolor">#F8F8F8</color>
+    <color name="hintcolor">#999999</color>
+    <color name="borderdttext">#EEEEEE</color>
+    <color name="Orange_light">#d6cdc9</color>
+
+    <color name="dot_dark_screen1">#d1395c</color>
+    <color name="dot_dark_screen2">#14a895</color>
+    <color name="dot_dark_screen3">#2278d4</color>
+    <color name="dot_dark_screen4">#a854d4</color>
+    <color name="pinckcolor">#fcd9ff</color>
+    <color name="yellowcolor">#ffffcb</color>
+</resources>
