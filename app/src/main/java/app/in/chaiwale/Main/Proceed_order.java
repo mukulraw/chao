@@ -80,11 +80,11 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
     String total_amount;
     private String id, bankName, txnAmount, txnDate, gateWayName, txnId, checkSumHash, respMsg;
 
-    String M_ID = "SSFOOD57880232643221"; //Paytm Merchand Id we got it in paytm credentials
+    /*String M_ID = "SSFOOD57880232643221"; //Paytm Merchand Id we got it in paytm credentials
     String CHANNEL_ID = "WAP"; //Paytm Channel Id, got it in paytm credentials
     String INDUSTRY_TYPE_ID = "Retail"; //Paytm industry type got it in paytm credential
     String WEBSITE = "APPSTAGING";
-    String CALLBACK_URL = "https://securegw.stage.in/theia/paytmCallback?ORDER_ID=";
+    String CALLBACK_URL = "https://securegw.stage.in/theia/paytmCallback?ORDER_ID=";*/
     //String CALLBACK_URL = "https://securegw.paytm.in/theia/paytmCallback?ORDER_ID=";
     String paymentMode = "";
     private int cashAmount;
@@ -581,14 +581,14 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
                 .build();
 
 
-        final String MID = "SSFOOD57880232643221";
+        final String MID = "SSFOOD05684844524320";
         final String ORDER_ID = String.valueOf(System.currentTimeMillis());
         final String INDUSTRY_TYPE_ID = "Retail";
         final String CUST_ID = ORDER_ID;
         final String CHANNEL_ID = "WAP";
         final String TXN_AMOUNT = cash_amount;
         final String WEBSITE = "APPSTAGING";
-        final String CALLBACK_URL = "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=" + ORDER_ID;
+        final String CALLBACK_URL = "https://securegw.paytm.in/theia/paytmCallback?ORDER_ID=" + ORDER_ID;
 
 
         Api cr = retrofit.create(Api.class);
@@ -616,7 +616,7 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
 
                 //progress.setVisibility(View.GONE);
 
-                PaytmPGService Service = PaytmPGService.getStagingService();
+                PaytmPGService Service = PaytmPGService.getProductionService();
 
                 HashMap<String, String> paramMap = new HashMap<String, String>();
                 paramMap.put("MID", MID);
@@ -638,7 +638,7 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
 
                 Service.initialize(Order, null);
 
-                Service.enableLog(Proceed_order.this);
+                //Service.enableLog(Proceed_order.this);
 
                 Service.startPaymentTransaction(Proceed_order.this, true, true, new PaytmPaymentTransactionCallback() {
                     /*Call Backs*/
@@ -702,7 +702,7 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
     private void initializePaytmPayment(String checksumHash, Paytm paytm) {
 
         //getting paytm service
-        PaytmPGService Service = PaytmPGService.getStagingService();
+        /*PaytmPGService Service = PaytmPGService.getStagingService();
 
         HashMap<String, String> paramMap = new HashMap<>();
         paramMap.put("MID", M_ID);
@@ -725,7 +725,7 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
         //finally starting the payment transaction
         Service.startPaymentTransaction(Proceed_order.this, true, true, Proceed_order.this);
         PaytmPaymentTransactionCallback zfzs = Service.getmPaymentTransactionCallback();
-        Log.d("mytag", "Paytm_call_back" + zfzs.toString());
+        Log.d("mytag", "Paytm_call_back" + zfzs.toString());*/
 
     }
 

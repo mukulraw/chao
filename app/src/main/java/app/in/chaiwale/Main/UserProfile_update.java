@@ -1,5 +1,6 @@
 package app.in.chaiwale.Main;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -68,11 +70,13 @@ TextView name_text,email,phone,address,topname,topph,address22;
     ImageView banc;
     private String id, bankName, txnAmount, txnDate, gateWayName, txnId, checkSumHash, respMsg;
 
+/*
     String M_ID = "SSFOOD57880232643221"; //Paytm Merchand Id we got it in paytm credentials
     String CHANNEL_ID = "WAP"; //Paytm Channel Id, got it in paytm credentials
     String INDUSTRY_TYPE_ID = "Retail"; //Paytm industry type got it in paytm credential
     String WEBSITE = "APPSTAGING";
     String CALLBACK_URL = "https://securegw-stage.paytm.in/theia/processTransaction?ORDER_ID=";
+*/
 
     TextView credit;
 
@@ -168,9 +172,116 @@ TextView name_text,email,phone,address,topname,topph,address22;
         address_lner1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String hint="Please enter Address 1";
+                /*String hint="Please enter Address 1";
                 String tile="Please Update Address 1";
-                showdiloge(hint,tile,name1,email1,address3,address2);
+                showdiloge(hint,tile,name1,email1,address3,address2);*/
+
+                final Dialog dialog = new Dialog(UserProfile_update.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.address_dialog);
+                dialog.setCancelable(false);
+                dialog.show();
+
+
+                ImageView close = dialog.findViewById(R.id.crossimgae);
+                final EditText add = dialog.findViewById(R.id.address2);
+                Spinner locality = dialog.findViewById(R.id.spinner);
+                Button done = dialog.findViewById(R.id.done);
+
+                final String[] loca = {""};
+
+                close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(UserProfile_update.this,
+                        android.R.layout.simple_spinner_item, arraySpinner);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                locality.setAdapter(adapter);
+
+                locality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                {
+                    @Override
+                    public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+                        // TODO Auto-generated method stub
+                        loca[0] = arraySpinner[position];
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> arg0) {
+                        // TODO Auto-generated method stub
+                    }
+                });
+
+
+                done.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        final String a = add.getText().toString();
+
+                        if (a.length() > 0 )
+                        {
+
+                            progressDialog = progressDialog.show(UserProfile_update.this, "", "Please wait...", false, false);
+                            StringRequest stringRequest = new StringRequest(Request.Method.POST, API_URL.getProfile, new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String s) {
+
+
+
+                                    Log.e("Profile_get",s);
+                                    //alert.cancel();
+                                    progressDialog.dismiss();
+                                    try {
+                                        JSONObject jsonObject1=new JSONObject(s);
+                                        getProfile();
+
+                                    } catch (Exception  e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    dialog.dismiss();
+
+                                }
+                            }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError volleyError) {
+                                    // pGif.setVisibility(View.GONE);
+                                    Log.d("errrr" , volleyError.toString());
+                                    progressDialog.dismiss();
+                                }
+                            }) {
+                                @Override
+                                protected Map<String, String> getParams() {
+                                    Map<String, String> params = new HashMap<>();
+                                    params.put("userId",useid);
+                                    params.put("name", topname.getText().toString());
+                                    params.put("email", email.getText().toString());
+                                    params.put("address", a + ", " + loca[0]);
+                                    params.put("address2", address22.getText().toString());
+                                    params.put("locality", spinner.getSelectedItem().toString());
+
+                                    Log.e("tag_post", String.valueOf(params));
+                                    return params;
+                                }
+                            };
+                            Volley.newRequestQueue(UserProfile_update.this).add(stringRequest);
+
+                        }
+                        else
+                        {
+                            Toast.makeText(UserProfile_update.this, "Please enter an address", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+
+
+
 
             }
         });
@@ -178,9 +289,116 @@ TextView name_text,email,phone,address,topname,topph,address22;
   address_lner2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+/*
                 String hint="Please enter Address 2";
                 String tile="Please Update Address 2";
                 showdiloge(hint,tile,name1,email1,address3,address2);
+*/
+
+                final Dialog dialog = new Dialog(UserProfile_update.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.address_dialog);
+                dialog.setCancelable(false);
+                dialog.show();
+
+
+                ImageView close = dialog.findViewById(R.id.crossimgae);
+                final EditText add = dialog.findViewById(R.id.address2);
+                Spinner locality = dialog.findViewById(R.id.spinner);
+                Button done = dialog.findViewById(R.id.done);
+
+                final String[] loca = {""};
+
+                close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(UserProfile_update.this,
+                        android.R.layout.simple_spinner_item, arraySpinner);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                locality.setAdapter(adapter);
+
+                locality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                {
+                    @Override
+                    public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+                        // TODO Auto-generated method stub
+                        loca[0] = arraySpinner[position];
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> arg0) {
+                        // TODO Auto-generated method stub
+                    }
+                });
+
+
+                done.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        final String a = add.getText().toString();
+
+                        if (a.length() > 0 )
+                        {
+
+                            progressDialog = progressDialog.show(UserProfile_update.this, "", "Please wait...", false, false);
+                            StringRequest stringRequest = new StringRequest(Request.Method.POST, API_URL.getProfile, new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String s) {
+
+
+
+                                    Log.e("Profile_get",s);
+                                    //alert.cancel();
+                                    progressDialog.dismiss();
+                                    try {
+                                        JSONObject jsonObject1=new JSONObject(s);
+                                        getProfile();
+
+                                    } catch (Exception  e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    dialog.dismiss();
+
+                                }
+                            }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError volleyError) {
+                                    // pGif.setVisibility(View.GONE);
+                                    Log.d("errrr" , volleyError.toString());
+                                    progressDialog.dismiss();
+                                }
+                            }) {
+                                @Override
+                                protected Map<String, String> getParams() {
+                                    Map<String, String> params = new HashMap<>();
+                                    params.put("userId",useid);
+                                    params.put("name", topname.getText().toString());
+                                    params.put("email", email.getText().toString());
+                                    params.put("address", address.getText().toString());
+                                    params.put("address2", a + ", " + loca[0]);
+                                    params.put("locality", spinner.getSelectedItem().toString());
+
+                                    Log.e("tag_post", String.valueOf(params));
+                                    return params;
+                                }
+                            };
+                            Volley.newRequestQueue(UserProfile_update.this).add(stringRequest);
+
+                        }
+                        else
+                        {
+                            Toast.makeText(UserProfile_update.this, "Please enter an address", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+
 
             }
         });
@@ -212,7 +430,6 @@ TextView name_text,email,phone,address,topname,topph,address22;
     }
 
     void showdiloge( String hint, String titl, String name1, String email1, String address3, String address223)
-
     {
         LayoutInflater inflater = LayoutInflater.from(this);
         final View vs = inflater.inflate(R.layout.diloge, null);
@@ -290,6 +507,8 @@ TextView name_text,email,phone,address,topname,topph,address22;
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
 
             }
         });
@@ -456,14 +675,14 @@ TextView name_text,email,phone,address,topname,topph,address22;
 
 
 
-        final String MID = "SSFOOD57880232643221";
+        final String MID = "SSFOOD05684844524320";
         final String ORDER_ID = String.valueOf(System.currentTimeMillis());
         final String INDUSTRY_TYPE_ID = "Retail";
         final String CUST_ID = ORDER_ID;
         final String CHANNEL_ID = "WAP";
         final String TXN_AMOUNT = amount;
         final String WEBSITE = "APPSTAGING";
-        final String CALLBACK_URL = "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=" + ORDER_ID;
+        final String CALLBACK_URL = "https://securegw.paytm.in/theia/paytmCallback?ORDER_ID=" + ORDER_ID;
 
 
 
@@ -492,7 +711,7 @@ TextView name_text,email,phone,address,topname,topph,address22;
 
                 //progress.setVisibility(View.GONE);
 
-                PaytmPGService Service = PaytmPGService.getStagingService();
+                PaytmPGService Service = PaytmPGService.getProductionService();
 
                 HashMap<String, String> paramMap = new HashMap<String, String>();
                 paramMap.put("MID", MID);
@@ -514,7 +733,7 @@ TextView name_text,email,phone,address,topname,topph,address22;
 
                 Service.initialize(Order, null);
 
-                Service.enableLog(UserProfile_update.this);
+                //Service.enableLog(UserProfile_update.this);
 
                 Service.startPaymentTransaction(UserProfile_update.this, true, true, new PaytmPaymentTransactionCallback() {
                     /*Call Backs*/
@@ -658,7 +877,7 @@ TextView name_text,email,phone,address,topname,topph,address22;
     private void initializePaytmPayment(String checksumHash, PaytmWallet paytm) {
 
         //getting paytm service
-        PaytmPGService Service = PaytmPGService.getStagingService();
+        /*PaytmPGService Service = PaytmPGService.getStagingService();
 
         HashMap<String, String> paramMap = new HashMap<>();
         paramMap.put("MID", M_ID);
@@ -682,7 +901,7 @@ TextView name_text,email,phone,address,topname,topph,address22;
         //finally starting the payment transaction
         Service.startPaymentTransaction(UserProfile_update.this, true, true, UserProfile_update.this);
         PaytmPaymentTransactionCallback zfzs =   Service.getmPaymentTransactionCallback();
-        Log.d("mytag","Paytm_call_back"+zfzs.toString());
+        Log.d("mytag","Paytm_call_back"+zfzs.toString());*/
 
     }
 
