@@ -574,7 +574,7 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
 
         //creating a retrofit object.
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://chaiwale.info/")
+                .baseUrl("http://afsanaonline.com/chaiwala/")
                 //.baseUrl("http://ec2-13-126-246-74.ap-south-1.compute.amazonaws.com/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -583,12 +583,12 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
 
         final String MID = "SSFOOD05684844524320";
         final String ORDER_ID = String.valueOf(System.currentTimeMillis());
-        final String INDUSTRY_TYPE_ID = "Retail";
+        final String INDUSTRY_TYPE_ID = "Retail109";
         final String CUST_ID = ORDER_ID;
         final String CHANNEL_ID = "WAP";
         final String TXN_AMOUNT = cash_amount;
-        final String WEBSITE = "APPSTAGING";
-        final String CALLBACK_URL = "https://securegw.paytm.in/theia/paytmCallback?ORDER_ID=" + ORDER_ID;
+        final String WEBSITE = "SSFOOD";
+        final String CALLBACK_URL = "https://pguat.paytm.com/paytmchecksum/paytmCallback.jsp";
 
 
         Api cr = retrofit.create(Api.class);
@@ -597,11 +597,11 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
                 MID,
                 ORDER_ID,
                 CUST_ID,
-                INDUSTRY_TYPE_ID,
                 CHANNEL_ID,
                 TXN_AMOUNT,
                 WEBSITE,
-                CALLBACK_URL
+                CALLBACK_URL,
+                INDUSTRY_TYPE_ID
         );
 
 

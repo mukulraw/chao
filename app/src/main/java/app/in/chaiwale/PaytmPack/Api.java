@@ -38,11 +38,11 @@ public interface Api {
             @Part("MID") String MID,
             @Part("ORDER_ID") String ORDER_ID,
             @Part("CUST_ID") String CUST_ID,
-            @Part("INDUSTRY_TYPE_ID") String INDUSTRY_TYPE_ID,
             @Part("CHANNEL_ID") String CHANNEL_ID,
             @Part("TXN_AMOUNT") String TXN_AMOUNT,
             @Part("WEBSITE") String WEBSITE,
-            @Part("CALLBACK_URL") String CALLBACK_URL
+            @Part("CALLBACK_URL") String CALLBACK_URL,
+            @Part("INDUSTRY_TYPE_ID") String INDUSTRY_TYPE_ID
     );
 
 }

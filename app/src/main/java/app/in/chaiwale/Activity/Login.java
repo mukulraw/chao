@@ -172,6 +172,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             public void onErrorResponse(VolleyError volleyError) {
                 // pGif.setVisibility(View.GONE);
                 progressDialog.dismiss();
+                otplayout.setVisibility(View.VISIBLE);
+                Log.d("asdasd" , volleyError.toString());
             }
         }) {
             @Override
