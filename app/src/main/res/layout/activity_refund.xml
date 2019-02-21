@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/main_menu"
-    tools:context="app.in.chaiwale.Main.Refund">
+    tools:context="app.chai.chaiwale.Main.Refund">
 
     <ProgressBar
         android:id="@+id/progressBar"
