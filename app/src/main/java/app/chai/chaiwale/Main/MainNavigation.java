@@ -35,6 +35,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -45,6 +46,7 @@ import java.util.TimerTask;
 import app.chai.chaiwale.API_URL;
 import app.chai.chaiwale.Activity.Login;
 import app.chai.chaiwale.Activity.SessionManager;
+import app.chai.chaiwale.Pojo_Class.getCartPojo;
 import app.chai.chaiwale.R;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -467,9 +469,12 @@ public class MainNavigation extends AppCompatActivity
 
                 Toast.makeText(this, "Please Check internet ", Toast.LENGTH_SHORT).show();
             }
-            mTimer = new Timer();   //recreate new
+
+            getCartItem();
+
+            /*mTimer = new Timer();   //recreate new
             //Toast.makeText(getContext(),"Refreshed",Toast.LENGTH_SHORT).show();
-            mTimer.scheduleAtFixedRate(new TimeDisplay(), 0, notify);
+            mTimer.scheduleAtFixedRate(new TimeDisplay(), 0, notify);*/
         }
     }
 
@@ -530,7 +535,7 @@ public class MainNavigation extends AppCompatActivity
                     String totalitem = preferences.getString("totlaitem","");
                     if (totalitem.equalsIgnoreCase(""))
                     {
-
+                        totalcart.setText("0");
                     }
                     else
                     {
@@ -567,5 +572,67 @@ public class MainNavigation extends AppCompatActivity
 
     }
 
+
+    void getCartItem()
+    {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, API_URL.getCart, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+
+                Log.e("getCartDetails",s);
+
+                try {
+                    JSONObject jsonObject1=new JSONObject(s);
+                    String message= jsonObject1.getString("message");
+                    String status= jsonObject1.getString("status");
+
+                    if (status.equalsIgnoreCase("1"))
+                    {
+
+                        String totalItem= jsonObject1.getString("totalItem");
+
+                        if (totalItem.equalsIgnoreCase(""))
+                        {
+                            totalcart.setText("0");
+                        }
+                        else
+                        {
+                            totalcart.setText(totalItem);
+                            // Toast.makeText(MainNavigation.this, ""+totalitem, Toast.LENGTH_SHORT).show();
+
+                        }
+
+
+                    }
+
+                    else
+                    {
+
+                    }
+
+                } catch (Exception  e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                // pGif.setVisibility(View.GONE);
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("userid", useid);
+                Log.e("send", String.valueOf(params));
+                return params;
+            }
+        };
+
+        Volley.newRequestQueue(this).add(stringRequest);
+
+    }
 
 }

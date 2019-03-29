@@ -1,6 +1,7 @@
 package app.chai.chaiwale.Main;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -137,6 +138,9 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
                     Toast.makeText(Proceed_order.this, "Please Choose Any One Address", Toast.LENGTH_SHORT).show();
 
                 } else {
+
+                    pay.setClickable(false);
+
                     if (mywallet_check.isChecked()) {
                         if (Integer.parseInt(totalamount) > Integer.parseInt(walletamoutn)) {
 
@@ -173,6 +177,7 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
             public void onClick(View v) {
                 address1_rd.setChecked(true);
                 address2_rd.setChecked(false);
+                address1 = address1_rd.getText().toString();
 
             }
         });
@@ -184,6 +189,7 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
 
                 address1_rd.setChecked(false);
                 address2_rd.setChecked(true);
+                address1 = address2_rd.getText().toString();
             }
         });
 
@@ -353,8 +359,8 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
                                 total_amount = jsonObject.getString("total_amount");
                                 Log.e("tag_orderid_r", String.valueOf(order_id) + "," + total_amount);
 
-                                Intent intent = new Intent(Proceed_order.this, MainNavigation.class);
-                                startActivity(intent);
+                                //Intent intent = new Intent(Proceed_order.this, MainNavigation.class);
+                                //startActivity(intent);
                                 Proceed_order.this.finish();
 
 
@@ -414,6 +420,11 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
                         if (status.equalsIgnoreCase("1")) {
                             JSONArray array = jsonObject1.getJSONArray("data");
 
+                            //Intent intent = new Intent(Proceed_order.this, MainNavigation.class);
+                            //startActivity(intent);
+                            Proceed_order.this.finish();
+
+
                             for (int i = 0; i < array.length(); i++) {
                                 JSONObject jsonObject = array.getJSONObject(i);
 
@@ -425,9 +436,6 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
                                 // call paytm method
                                 //if (paymentmode.equals("paytm")) {
 //                                    callSuccessPaymentApi(order_id_checkout);
-                                    Intent intent = new Intent(Proceed_order.this, MainNavigation.class);
-                                    startActivity(intent);
-                                    Proceed_order.this.finish();
 
 /*
                                 } else if (paymentmode.equals("cod")) {
@@ -869,6 +877,16 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
         final Button payment = (Button) vs.findViewById(R.id.makepayment);
         final ImageView crossimgae = vs.findViewById(R.id.crossimgae);
         builer.setCancelable(false);
+
+        builer.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+
+                pay.setClickable(true);
+
+            }
+        });
+
         final AlertDialog alert = builer.create();
         alert.getWindow().setGravity(Gravity.CENTER);
         alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -889,6 +907,9 @@ public class Proceed_order extends AppCompatActivity implements PaytmPaymentTran
                 if (paymentMode.equals("")) {
                     Toast.makeText(Proceed_order.this, "Please choose payment mode", Toast.LENGTH_SHORT).show();
                 } else {
+
+                    payment.setClickable(false);
+
                     if (paymentMode.equals("paytm")) {
                         cashAmount = Integer.parseInt(totalamount) - Integer.parseInt(walletamoutn);
                         //GetOrderId();

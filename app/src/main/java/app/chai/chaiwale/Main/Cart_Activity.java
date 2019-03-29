@@ -408,6 +408,9 @@ public class Cart_Activity extends AppCompatActivity {
                         finalprie.setText("Rs."+totalPrice);
                         String totalItem= jsonObject1.getString("totalItem");
 
+                        editor.putString("totlaitem",totalItem);
+                        editor.apply();
+                        editor.commit();
 
                         JSONArray array=jsonObject1.getJSONArray("data");
 

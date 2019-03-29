@@ -203,7 +203,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                    JSONObject jsonObject11=jsonObject1.getJSONObject("data");
                     useid = jsonObject11.getString("userId");
                     String Phone1 = jsonObject11.getString("phone");
-                    otp1 = jsonObject11.getString("otp");
+                    //otp1 = jsonObject11.getString("otp");
 
                     //Toast.makeText(Login.this, ""+otp1, Toast.LENGTH_SHORT).show();
 
